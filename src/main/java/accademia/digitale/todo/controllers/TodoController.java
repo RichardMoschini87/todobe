@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import accademia.digitale.todo.models.Priorita;
 import accademia.digitale.todo.models.Todo;
+import accademia.digitale.todo.service.PriorityService;
 import accademia.digitale.todo.service.TodoService;
 
 @RestController
@@ -20,9 +22,17 @@ public class TodoController {
 	@Autowired
 	private TodoService todoService;
 
+	@Autowired
+	private PriorityService priorityService;
+
 	@GetMapping("/todos")
 	public List<Todo> getTodos() {
 		return todoService.getTodos();
+	}
+
+	@GetMapping("/priorities")
+	public List<Priorita> getPrioriies() {
+		return priorityService.getPriorities();
 	}
 
 	@GetMapping("/todo")
