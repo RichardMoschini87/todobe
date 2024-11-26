@@ -42,4 +42,9 @@ public class TodoImpl implements TodoService {
 		repository.save(todo);
 	}
 
+	@Override
+	public void deleteTodo(Integer id) {
+		repository.deleteById(id);
+	}
+
 }

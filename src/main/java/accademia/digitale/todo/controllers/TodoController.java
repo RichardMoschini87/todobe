@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +22,6 @@ import accademia.digitale.todo.service.TodoService;
 @CrossOrigin
 @RestController
 public class TodoController {
-
 
 	@Autowired
 	private TodoService todoService;
@@ -37,7 +38,7 @@ public class TodoController {
 	public List<Priorita> getPrioriies() {
 		return priorityService.getPriorities();
 	}
-	
+
 	@GetMapping("/todo")
 	public Optional<Todo> getTodo(@RequestParam(name = "id") Integer id) {
 		return todoService.getTodoById(id);
@@ -53,4 +54,8 @@ public class TodoController {
 		todoService.updateTodo(todo);
 	}
 
+	@DeleteMapping("/todo/{id}")
+	public void deleteTodo(@PathVariable Integer id) {
+		todoService.deleteTodo(id);
+	}
 }
