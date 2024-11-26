@@ -13,12 +13,12 @@ import accademia.digitale.todo.repository.TodoRepository;
 
 @Service
 public class TodoImpl implements TodoService {
-	
-    private static final Logger log = LoggerFactory.getLogger(TodoImpl.class);
+
+	private static final Logger log = LoggerFactory.getLogger(TodoImpl.class);
 
 	@Autowired
-	private TodoRepository repository;	
-	
+	private TodoRepository repository;
+
 	@Override
 	public List<Todo> getTodos() {
 		log.info("Inizio chiamata todos");
@@ -32,6 +32,8 @@ public class TodoImpl implements TodoService {
 
 	@Override
 	public void insertTodo(Todo todo) {
+		Integer id = repository.findLastTodo();
+		todo.setId(id + 1);
 		repository.save(todo);
 	}
 
@@ -39,6 +41,5 @@ public class TodoImpl implements TodoService {
 	public void updateTodo(Todo todo) {
 		repository.save(todo);
 	}
-	
 
 }
